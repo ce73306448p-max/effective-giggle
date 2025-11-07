@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>에코스토리 : 지구를 위한 한 문장</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background-color: #fafafa;
+    }
+
+    section {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: all 0.6s ease-in-out;
+      padding: 40px;
+    }
+
+    h1, h2 {
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      color: #444;
+    }
+
+    /* 🌿 인스타그램 감성 색감 */
+    .intro { 
+      background: linear-gradient(180deg, #dff9e8, #fff);
+    }
+
+    .core { 
+      background: linear-gradient(180deg, #f5fdf9, #f2f2ff);
+    }
+
+    .campaign { 
+      background: linear-gradient(180deg, #fff5f5, #ffffff);
+    }
+
+    .story { 
+      background: linear-gradient(180deg, #eefaff, #fff);
+    }
+
+    .support { 
+      background: linear-gradient(180deg, #fff8ef, #fff);
+    }
+
+    /* 📸 인스타 감성 카드 */
+    .feed {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+      width: 90%;
+      max-width: 1000px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* 💌 버튼 */
+    button {
+      background-color: #3fae4d;
+      border: none;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #338e41;
+    }
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      color: #777;
+      background-color: #f7f7f7;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section {
+      animation: fadeInUp 1.2s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌿 소개 섹션 -->
+  <section class="intro">
+    <h1>에코스토리 🌱</h1>
+    <p>문예창작학과의 시선으로, 지구를 위해 한 문장을 남깁니다.<br>
+    감정으로 기록하고, 문장으로 기억하는 환경 캠페인 플랫폼.</p>
+    <button onclick="scrollToSection('core')">시작하기</button>
+  </section>
+
+  <!-- ✍️ 핵심활동 섹션 -->
+  <section class="core" id="core">
+    <h2>핵심 활동</h2>
+    <p>‘글쓰기’와 ‘공감’을 통해 환경 감수성을 확산합니다.<br>
+    사용자들은 자연에 대한 문장을 남기고, AI가 감정 색깔로 시각화합니다.</p>
+
+    <div class="feed">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=900&q=60" alt="숲">
+        <p>“오늘의 하늘은, 미안하다고 속삭였다.”</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=60" alt="바다">
+        <p>“바다가 울고 있다. 그 안에 버려진 건 우리 이야기.”</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=60" alt="나무">
+        <p>“나무는 오래된 시인이었다. 바람이 그 시를 읽는다.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🌍 캠페인 참여 섹션 -->
+  <section class="campaign">
+    <h2>캠페인 참여하기</h2>
+    <p>당신의 한 문장이 지구의 목소리가 됩니다.<br>짧은 문장으로 자연을 느껴보세요.</p>
+    <textarea id="ecoText" placeholder="예: 오늘의 바람은 따뜻했어요. 그게 다행이었어요."></textarea><br>
+    <button onclick="shareText()">내 문장 등록하기</button>
+    <p id="message" style="margin-top:15px; color:#3fae4d;"></p>
+  </section>
+
+  <!-- 📰 뉴스 / 스토리 섹션 -->
+  <section class="story">
+    <h2>뉴스 · 스토리</h2>
+    <p>환경문제와 문학이 만나는 곳, 감정이 흐르는 이야기들을 전합니다.</p>
+
+    <div class="feed">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1499084732479-de2c02d45fc4?auto=format&fit=crop&w=900&q=60" alt="책">
+        <p><strong>[에세이]</strong> “플라스틱 바다 위에 떠 있는 시 한 편”</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=900&q=60" alt="도시">
+        <p><strong>[인터뷰]</strong> “작가들이 본 기후위기의 얼굴”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 💚 후원 / 문의 섹션 -->
+  <section class="support">
+    <h2>후원 · 문의</h2>
+    <p>에코스토리는 비영리 창작 캠페인입니다.<br>
+    더 많은 이야기가 지구를 향할 수 있도록 함께해주세요.</p>
+    <button onclick="alert('감사합니다! 후원 문의는 eco@story.kr 로 연락해주세요.')">후원하기</button>
+  </section>
+
+  <footer>
+    © 2025 EcoStory | 문예창작학과 X 환경 감수성 프로젝트
+  </footer>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function shareText() {
+      const text = document.getElementById('ecoText').value;
+      if (text.trim() === "") {
+        alert("문장을 입력해주세요!");
+        return;
+      }
+      document.getElementById('message').innerText = "🌿 당신의 문장이 저장되었습니다.";
+      document.getElementById('ecoText').value = "";
+    }
+  </script>
+</body>
+</html>
